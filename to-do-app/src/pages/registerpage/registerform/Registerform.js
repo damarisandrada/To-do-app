@@ -22,7 +22,7 @@ const Form = ({firstNameInput, setFirstNameInput, lastNameInput, setLastNameInpu
 
     const submitButtton = (e) => {
         e.preventDefault();
-        console.log(firstNameInput, lastNameInput, passwordInput, mailInput)
+        console.log(firstNameInput, lastNameInput, mailInput, passwordInput)
 
         axios
         .post(`https://todo-application-2.herokuapp.com/registerPerson`,{

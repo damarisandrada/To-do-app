@@ -13,7 +13,7 @@ setInputText(e.target.value);
     }
     return(
 <Container>
-    <form>
+    <form style={{width : "100%"}}>
         <Input value={inputText} onChange={textInput} type="text" className="todoInput" placeholder="Add a new task"></Input>
         <Button onClick={submitTask} type="submit" className="todoButton">Add</Button>
     </form>

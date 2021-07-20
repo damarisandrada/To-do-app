@@ -32,6 +32,7 @@ height: 25%;
 width: 95%;
 background-color: white;
 display: flex;
+flex-wrap: wrap;
 `;
 
 export const H4 = styled.h4`

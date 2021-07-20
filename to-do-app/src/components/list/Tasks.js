@@ -1,4 +1,5 @@
 import React from 'react';
+import { Container, Li } from './Tasks.style';
 
 const Tasks = ({text, tasks, task, setTasks}) =>{
 
@@ -7,11 +8,11 @@ const Tasks = ({text, tasks, task, setTasks}) =>{
     };
 
     return(
-<div className ="tasks">
-    <li className="task">{text}</li>
+<Container className ="tasks">
     <input type="checkbox"></input>
-    <button onClick={deleteButton} className="delete">Delete</button>
-</div>
+    <Li className="task">{text}</Li>
+    <button style={{height : "20px"}} onClick={deleteButton} className="delete">X</button>
+</Container>
     );
 };
 
