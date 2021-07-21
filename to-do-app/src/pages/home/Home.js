@@ -7,7 +7,7 @@ import axios from 'axios';
 const ContentHome = () =>{
     const [inputText, setInputText] = useState("");
     const [tasks, setTasks] = useState([]);
-    const [ tasks2, setTasks2] = useState([]);
+
    
     const userId = localStorage.getItem("Id");
 
@@ -22,7 +22,7 @@ const ContentHome = () =>{
         .post ("https://todo-application-2.herokuapp.com/actionsOfUser", {
            "personId": userId,
         })
-        .then((res) => {setTasks2(res); console.log(tasks2)})
+        .then((res) => {console.log(res); setTasks(res.data)})
     }, [userId]);
 
     return(
@@ -30,7 +30,7 @@ const ContentHome = () =>{
 <ListContainer>
 <Tasks>
     <H4>Tasks</H4>
-    <ToDoList tasks={tasks} setTasks={setTasks} tasks2={tasks2} setTasks2={setTasks2}></ToDoList>
+    <ToDoList tasks={tasks} setTasks={setTasks} userId={userId}></ToDoList>
 </Tasks>
 <Newtask>
     <H4>New Task</H4>
