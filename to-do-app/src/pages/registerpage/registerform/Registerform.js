@@ -26,12 +26,14 @@ const Form = ({firstNameInput, setFirstNameInput, lastNameInput, setLastNameInpu
 
         axios
         .post(`https://todo-application-2.herokuapp.com/registerPerson`,{
-            "mail" : mailInput,
+            "email" : mailInput,
             "password" : passwordInput,
             "firstName" : firstNameInput,
             "lastName": lastNameInput
         })
-        .then((res) => console.log(res));
+        .then((res) =>  res.statusText === "OK" ? window.location.href = "http://localhost:3000/Login" :  console.log("Eroare"));
+       
+        
     }
     return( 
 <FormContainer>

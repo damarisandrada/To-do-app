@@ -3,6 +3,7 @@ import { FormContainer, Formlogin, Input, Button } from "./Loginform.style"
 import axios from 'axios';
 
 const Form = ({mailInputL, setMailInputL, passwordInputL, setPasswordInputL}) =>{
+
     const mailL = (e) => {
         console.log(e.target.value);
         setMailInputL(e.target.value);
@@ -18,10 +19,12 @@ const Form = ({mailInputL, setMailInputL, passwordInputL, setPasswordInputL}) =>
 
         axios
         .post(`https://todo-application-2.herokuapp.com/loginPerson`,{
-            "mail" : mailInputL,
+            "email" : mailInputL,
             "password" : passwordInputL,
         })
-        .then((res) => console.log(res));
+        .then((res) => { console.log(res); localStorage.setItem('Id', res.data.id); res.statusText === "OK" ? window.location.href = "http://localhost:3000/Home" :  console.log("Eroare")})
+
+        
         
     }
     return( 
