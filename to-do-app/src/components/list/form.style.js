@@ -6,14 +6,18 @@ height: 80%;
 display: flex;
 `;
 
+export const AddTaskForm = styled.form`
+height: 100%;
+width: 100%;
+`;
+
 export const Input = styled.input`
 width: 85%;
 height: 35px;
-margin-left: 5%;
-margin-top: -25px;
 border-radius: 20px;
 outline: none;
 padding-left: 15px;
+align-self: center;
 `;
 
 export const Button = styled.button`
@@ -23,7 +27,7 @@ margin-top: 10px;
 margin-bottom: 10px;
 border: none;
 cursor: pointer;
-margin-left: 90%;
+align-self: flex-end;
 background-color: #FDC12A;
 font-weight: bolder;
 `;

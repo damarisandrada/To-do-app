@@ -1,44 +1,37 @@
-import React, { useState } from 'react';
-import { Container, Li } from './Tasks.style';
+import { Button, Container, Li } from './Tasks.style';
 import axios from 'axios';
 
-const Tasks = ({text, Id, tasks, setTasks}) =>{
+const Tasks = ({ text, completed, id, tasks, setTasks }) => {
 
-    const [check, setCheck] = useState(true);
-    const [ischecked, setIschecked] = useState();
+    const deleteButton = () => {
 
-    const deleteButton = () =>{
-        setTasks(tasks.filter((el) => el.id !== Id))
+        setTasks(tasks.filter((el) => el.id !== id))
 
         axios
-        .delete('https://todo-application-2.herokuapp.com/action', {
-            data : {
-                id : Id,
-            },
-        })
-        .then((res) => console.log(res))
+            .delete('https://todo-application-2.herokuapp.com/action', {
+                data: {
+                    id: id,
+                },
+            })
+            .then((res) => console.log(res))
     };
-
-    const checkButton = () => {
-        setCheck(!check)
-        console.log(check)
+    
+    const checkButton = (completed) => {
 
         axios
-        .put(`https://todo-application-2.herokuapp.com/action`, {
-            "id" : Id,
-            "isDone" : check,
-        })
-        .then((res) => {console.log(res); setIschecked(res.isDone)});
-      
-        //setIschecked(res.isDone)
+            .put(`https://todo-application-2.herokuapp.com/action`, {
+                "id": id,
+                "isDone": !completed,
+            })
+            .then((res) => { console.log(res); setTasks(tasks.map(newtask => newtask.id === id ? { ...newtask, isDone: !completed } : newtask)) });
     };
 
-    return(
-<Container className ="tasks">
-    <input type="checkbox" onClick={checkButton} {...(ischecked ? {attribute : 'checked={true}'} : "")}></input>
-    <Li check={check} setCheck={setCheck}>{text}</Li>
-    <button style={{height : "20px"}} onClick={deleteButton} className="delete">X</button>
-</Container>
+    return (
+        <Container className="tasks">
+            <input value={completed} checked={completed} type="checkbox" onClick={() => checkButton(completed)}></input>
+            <Li>{text}</Li>
+            <Button onClick={() => deleteButton()} className="delete">X</Button>
+        </Container>
     );
 };
 

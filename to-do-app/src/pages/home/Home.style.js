@@ -20,7 +20,7 @@ align-content: space-around;
 `;
 
 export const Tasks = styled.div`
-height: 70%;
+height: 67%;
 width: 95%;
 background-color: white;
 display: flex;
@@ -28,7 +28,7 @@ flex-direction: column;
 `;
 
 export const Newtask = styled.div`
-height: 25%;
+height: 30%;
 width: 95%;
 background-color: white;
 display: flex;
@@ -36,6 +36,9 @@ flex-wrap: wrap;
 `;
 
 export const H4 = styled.h4`
-margin-top: 10px;
-margin-left: 10px;
+margin-top: 3%;
+margin-left: 5%;
+width: 70%;
+font-size: larger;
+font-weight: bolder;
 `;

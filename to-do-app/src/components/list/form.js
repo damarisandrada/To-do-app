@@ -1,37 +1,33 @@
 import React from 'react';
-import { Container, Input, Button } from './form.style';
+import { Container, Input, Button, AddTaskForm } from './form.style';
 import axios from 'axios';
 
-const Form = ({inputText, setInputText, tasks, setTasks, userId, key, check}) =>{
+const Form = ({inputText, setInputText, tasks, setTasks, userId}) =>{
+    
     const textInput = (e) =>{
-console.log(e.target.value);
 setInputText(e.target.value);
     };
+
     const submitTask = (e) =>{
+
         e.preventDefault();
-        setTasks([...tasks, {text: inputText, completed: check, id: key }]);
-        setInputText("");
 
         axios
         .post('https://todo-application-2.herokuapp.com/action', {
             "name" : inputText,
-            "isDone" : "false",
+            "isDone" : 0,
             "personId" : userId,
         })
-        .then((res) => res.statusText === "OK" ? 
-        axios
-        .post ("https://todo-application-2.herokuapp.com/actionsOfUser", {
-           "personId": userId,
-        })
-       .then((res) => {console.log(res); setTasks(res.data)})
-        : "")   
-    }
+        .then((res) => {console.log(res); setTasks([...tasks, {name: inputText, isDone: false, id:res.data.id }])}); 
+        
+        setInputText("")
+    };
     return(
 <Container>
-    <form style={{width : "100%"}}>
-        <Input value={inputText} onChange={textInput} type="text" className="todoInput" placeholder="Add a new task"></Input>
-        <Button onClick={submitTask} type="submit" className="todoButton">Add</Button>
-    </form>
+    <AddTaskForm style={{width : "100%"}}>
+        <Input value={inputText} onChange={(e) => textInput(e)} type="text" className="todoInput" placeholder="Add a new task"></Input>
+        <Button onClick={(e) => submitTask(e)} type="submit" className="todoButton">Add</Button>
+    </AddTaskForm>
 </Container>
     );
 };

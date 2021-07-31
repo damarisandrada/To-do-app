@@ -33,6 +33,7 @@ const Form = ({firstNameInput, setFirstNameInput, lastNameInput, setLastNameInpu
         })
         .then((res) =>  res.statusText === "OK" ? window.location.href = "http://localhost:3000/Login" :  console.log("Eroare"));
        
+       
         
     }
     return( 

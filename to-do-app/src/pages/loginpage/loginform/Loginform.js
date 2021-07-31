@@ -23,6 +23,7 @@ const Form = ({mailInputL, setMailInputL, passwordInputL, setPasswordInputL}) =>
             "password" : passwordInputL,
         })
         .then((res) => { console.log(res); localStorage.setItem('Id', res.data.id); res.statusText === "OK" ? window.location.href = "http://localhost:3000/Home" :  console.log("Eroare")})
+        
 
         
         

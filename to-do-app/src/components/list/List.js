@@ -5,10 +5,12 @@ import Tasks from './Tasks';
 const ToDoList = ({tasks, setTasks}) =>{
     return(
 <Container>
-    <Ul className="todoList">
+    <Ul className="todoList" style={{overflowY: 'auto', height:"80%"}}>
     {tasks.map(task => (
-         <Tasks Id={task.id} text={task.name} completed={task.isDone} tasks={tasks} setTasks={setTasks} task={task}></Tasks>
-       ))}
+         <Tasks key={task.id} id={task.id} text={task.name} completed={task.isDone} tasks={tasks} setTasks={setTasks} task={task}></Tasks>
+      ))
+    }
+
     </Ul>
 </Container>
     );

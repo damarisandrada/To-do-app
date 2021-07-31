@@ -3,11 +3,12 @@ import { Container, ListContainer, Tasks, Newtask, H4 } from './Home.style';
 import ToDoList from '../../components/list/List';
 import Form from '../../components/list/form';
 import axios from 'axios';
+import Search from '../../components/list/Search';
 
 const ContentHome = () =>{
     const [inputText, setInputText] = useState("");
     const [tasks, setTasks] = useState([]);
-
+    const [searchTask, setSearchTask] = useState("");
    
     const userId = localStorage.getItem("Id");
 
@@ -22,14 +23,19 @@ const ContentHome = () =>{
         .post ("https://todo-application-2.herokuapp.com/actionsOfUser", {
            "personId": userId,
         })
-        .then((res) => {console.log(res); setTasks(res.data)})
+        .then((res) => {console.log(res); res.data instanceof Array ? setTasks(res.data) : setTasks([]); setSearchTask(res.data)})
+        
     }, [userId]);
+   
 
     return(
 <Container>
 <ListContainer>
 <Tasks>
+    <div style={{display:"flex", flexDirection:"row", flexWrap:"nowrap"}}>
     <H4>Tasks</H4>
+    <Search searchTask={searchTask} setSearchTask={setSearchTask} tasks={tasks} setTasks={setTasks} userId={userId}></Search>
+    </div>
     <ToDoList tasks={tasks} setTasks={setTasks} userId={userId}></ToDoList>
 </Tasks>
 <Newtask>
