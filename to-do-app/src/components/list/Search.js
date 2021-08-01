@@ -9,10 +9,9 @@ const Search = ({tasks, setTasks, searchTask, setSearchTask}) => {
             };
 
             const searchButton = () =>{
+                setTasks(searchTask);
+                
                 setTasks(tasks.filter((el) => el.name === searchinput));
-              /*  if(searchinput===""){
-                    return(setTasks(searchTask));
-                }*/
             };
    
     return(
